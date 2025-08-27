@@ -51,11 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   // Lista de sonidos de emergencia (debes agregar los archivos en assets/audio/)
-  final List<Map<String, String>> emergencySounds = [
-    {'label': 'Alerta General', 'file': 'alerta_general.mp3'},
-    {'label': 'Emergencia Médica', 'file': 'emergencia_medica.mp3'},
-    {'label': 'Incendio', 'file': 'incendio.mp3'},
-    {'label': 'Caída', 'file': 'caida.mp3'},
+  final List<Map<String, String>> feidSongs = [
+    {'label': 'LUNA', 'file': 'luna_feid.mp3'},
+    {'label': 'PORFA', 'file': 'porfa_feid.mp3'},
+    {'label': 'BRICKELL', 'file': 'brickell_feid.mp3'},
+    {'label': 'SI TÚ SUPIERAS', 'file': 'si_tu_supieras_feid.mp3'},
   ];
 
   void _playSound(String fileName) async {
@@ -67,32 +67,35 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Alertas Sonoras'),
+        backgroundColor: Colors.deepPurple,
+        title: Text('Feid Player 🎵', style: TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Presiona un botón de emergencia:',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              '¡Escucha las mejores canciones de Feid!',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepPurple),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
-            ...emergencySounds.map((sound) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(250, 60),
-                      textStyle: const TextStyle(fontSize: 20),
-                      backgroundColor: Colors.redAccent,
-                    ),
-                    icon: const Icon(Icons.warning, size: 32),
-                    label: Text(sound['label']!),
-                    onPressed: () => _playSound(sound['file']!),
-                  ),
-                )),
+            ...feidSongs.map((song) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(280, 70),
+                  textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  backgroundColor: Colors.deepPurple,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                  elevation: 5,
+                ),
+                icon: const Icon(Icons.music_note, size: 28),
+                label: Text(song['label']!),
+                onPressed: () => _playSound(song['file']!),
+              ),
+            )),
           ],
         ),
       ),
